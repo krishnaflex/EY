@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-fluid">
+
+   <div class="signup">
+	<h2>Signup in Seconds</h2>
+	<div class="signup_container">
+	<div class="">
+	
+	<form class="form_dec" onsubmit="return checkForm(this);">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="text" class="form-control input_dec" id="username" placeholder="First Name" required>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control input_dec" id="" placeholder="Last Name" required>
+  </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Suburb/State</label>
+    <input type="text" class="form-control input_dec input_state" id="" >
+  </div>
+  <div class="form-group" id="sandbox-container">
+    <label for="exampleInputEmail1" class="lable_dec">Date of Birth</label>
+    <input type="text" class="form-control" id="" placeholder="MM/DD/YEAR">
+	
+  </div>
+
+  <div class="form-group">
+        <label class="control-label">Gender</label>
+        <div class="">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default">
+                    <input type="radio" name="gender" value="male" /> Male
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="gender" value="female" /> Female
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="gender" value="other" /> Other
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+<div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="Email" class="form-control input_dec" id="" placeholder="Email" required>
+  </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Password</label>
+    <input type="password" class="form-control input_dec" id="pwd1" placeholder="Password" required>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+</form>
+	</div>
+	<div class="pull-right emp_icon"><input type="file" onchange="previewFile()">
+<img id="uploadImg" border="0" src="" alt="upload img">
+</div>
+	
+	</div>
+   </div>
+</div>
+<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js"></script>
+
+<script>
+function checkForm(form)
+  {
+    
+    if(form.pwd1.value != "") {
+      if(form.pwd1.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.pwd1.focus();
+        return false;
+      }
+     
+      re = /[0-9]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.pwd1.focus();
+        return false;
+      }
+    } else {
+      //alert("Error: Please check that you've entered and confirmed your password!");
+      form.pwd1.focus();
+      return false;
+    }
+
+    //alert("You entered a valid password: " + form.pwd1.value);
+    return true;
+  }
+
+
+
+   function previewFile(){
+
+       var preview = document.querySelector('img'); 
+       var file    = document.querySelector('input[type=file]').files[0]; 
+       var reader  = new FileReader();
+
+       reader.onloadend = function () {
+           preview.src = reader.result;
+       }
+
+       if (file) {
+           reader.readAsDataURL(file); 
+       } else {
+           preview.src = "";
+       }
+  }
+
+  previewFile(); 
+
+  $('#sandbox-container input').datepicker({
+});
+  </script>
+</body>
+</html>
